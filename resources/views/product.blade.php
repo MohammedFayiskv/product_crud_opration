@@ -107,7 +107,7 @@
                                 <td>${product.prd_description}</td>
                                  <td>${product.prd_price}</td>
                                  <td><img src="${product.prd_image}" alt="${product.prd_name}" width="50" height="50"></td>
-                               <td class="d-flex flex-column flex-sm-row gap-2">
+                               <td class="d-flex flex-column flex-md-row gap-2" style="padding: 11px">
                                         <button class="btn btn-primary editProduct" data-id="${product.prd_id}">
                                             <i class="bi bi-pencil-square"></i>Edit
                                         </button>
@@ -218,6 +218,7 @@
                     $('#price').val(data.prd_price);
                     if (data.prd_image) {
                     $('#currentImage').attr('src', data.prd_image); 
+                    
                     $('#currentImageWrapper').show(); 
                     } else {
                     $('#currentImageWrapper').hide(); 

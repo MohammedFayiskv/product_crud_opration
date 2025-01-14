@@ -86,28 +86,32 @@ public function store(Request $request)
         'image.max' => 'The image size should not exceed 2MB.',
     ]
     );
+    $editproduct =Product::where('prd_id', $request->prd_id)->first();
+    $imagePath = $editproduct->image;
 
-
-
-        $imagePath = $product->image;
+  
+    
+       
      if ($request->hasFile('image')) {
-        if ($product->image) {
-            Storage::disk('public')->delete($product->image);
+        if ($editproduct->image) {
+            Storage::disk('public')->delete($editproduct->image);
         }
         $image = $request['image'];
         $destinationPath = 'images/product';
         $name =time() . '.' . $image->getClientOriginalExtension();
         $image->move($destinationPath, $name);
         $imagePath = $destinationPath . '/' . $name;
+      
 
     }
+    $product = array();
+    $product['prd_image'] = $imagePath;
+    $product['prd_name'] = $request->name;
+    $product['prd_description'] = $request->description;
+    $product['prd_price'] = $request->price;
+
          
-        $product=[
-            'prd_name' => $request->name,
-            'prd_description' => $request->description,
-            'prd_price' => $request->price,
-            'prd_image' => $imagePath,
-        ];
+ 
 
         $data =Product::where('prd_id', $request->prd_id)->update($product);
 
