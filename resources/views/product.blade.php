@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -8,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
     <div class="container mt-5">
@@ -20,8 +22,8 @@
         </button>
      
 
-      
-        <table class="table">
+        <div class="table-responsive">
+        <table class="table table-sm table-hover table-striped">
             <thead>
                 <tr>
                 <th>Sl.No</th>
@@ -36,6 +38,7 @@
                 
             </tbody>
         </table>
+        </div>
     </div>
 
     <!-- Product Modal -->
@@ -83,7 +86,8 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha384-oT4E2oXGK3gG6QFVV2r/ZWNCXor/6yW5/jPPUjCqk7O7fUwOBG/bWhOTKw1+NzOj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>/ -->
+         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function () {
            $.ajaxSetup({
@@ -103,10 +107,15 @@
                                 <td>${product.prd_description}</td>
                                  <td>${product.prd_price}</td>
                                  <td><img src="${product.prd_image}" alt="${product.prd_name}" width="50" height="50"></td>
-                                <td>
-                                    <button class="btn btn-primary editProduct" data-id="${product.prd_id}"><i class="bi bi-pencil-square"></i>Edit</button>
-                                    <button class="btn btn-danger deleteProduct" data-id="${product.prd_id}"><i class="bi bi-trash-fill"></i>Delete</button>
-                                </td>
+                               <td class="d-flex flex-column flex-sm-row gap-2">
+                                        <button class="btn btn-primary editProduct" data-id="${product.prd_id}">
+                                            <i class="bi bi-pencil-square"></i>Edit
+                                        </button>
+                                        <button class="btn btn-danger deleteProduct" data-id="${product.prd_id}">
+                                            <i class="bi bi-trash-fill"></i>Delete
+                                        </button>
+                            </td>
+
                             </tr>`;
                     });
                     $('#productTable').html(rows);
@@ -139,7 +148,7 @@
 
  
                 
-                // formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
+            
 
             
                 const id = $('#productId').val();
